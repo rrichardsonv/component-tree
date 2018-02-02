@@ -10,6 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20180202213851) do
+
+  create_table "code_files", force: :cascade do |t|
+    t.string "file_path"
+    t.string "file_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["file_name"], name: "index_code_files_on_file_name"
+    t.index ["file_path"], name: "index_code_files_on_file_path"
+  end
+
+  create_table "exports", force: :cascade do |t|
+    t.string "name"
+    t.string "type"
+    t.string "exportable_type"
+    t.integer "exportable_id"
+    t.index ["exportable_type", "exportable_id"], name: "index_exports_on_exportable_type_and_exportable_id"
+  end
+
+  create_table "imports", force: :cascade do |t|
+    t.string "name"
+    t.integer "code_file_id"
+    t.integer "export_id"
+    t.index ["code_file_id"], name: "index_imports_on_code_file_id"
+    t.index ["export_id"], name: "index_imports_on_export_id"
+  end
+
+  create_table "packages", force: :cascade do |t|
+    t.string "file_path"
+    t.string "file_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["file_name"], name: "index_packages_on_file_name"
+    t.index ["file_path"], name: "index_packages_on_file_path"
+  end
 
 end
