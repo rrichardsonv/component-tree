@@ -2,5 +2,9 @@ class Export < ApplicationRecord
   has_many :imports
   belongs_to :exportable
 
-  alias_attribute :exportable, :dependent
+  delegate :path, to: :exportable
+
+  def dependent
+    self.exportable
+  end
 end

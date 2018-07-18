@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20180202213851) do
 
   create_table "exports", force: :cascade do |t|
     t.string "name"
-    t.string "type"
+    t.string "variety"
     t.string "exportable_type"
     t.integer "exportable_id"
     t.index ["exportable_type", "exportable_id"], name: "index_exports_on_exportable_type_and_exportable_id"
@@ -38,12 +38,10 @@ ActiveRecord::Schema.define(version: 20180202213851) do
   end
 
   create_table "packages", force: :cascade do |t|
-    t.string "file_path"
-    t.string "file_name"
+    t.string "path"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["file_name"], name: "index_packages_on_file_name"
-    t.index ["file_path"], name: "index_packages_on_file_path"
+    t.index ["path"], name: "index_packages_on_path"
   end
 
 end
